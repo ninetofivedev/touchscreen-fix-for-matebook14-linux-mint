@@ -21,7 +21,7 @@ So we have to tell the kernel to wait a little before initializing the I²C touc
 
 Create a new script in your bin folder:
 ```
-sudo nano /usr/local/bin ftsc1000-touch-init.sh
+sudo nano /usr/local/bin/ftsc1000-touch-init.sh
 ```
 
 Fill it with:
@@ -33,7 +33,7 @@ sudo modprobe i2c_hid_acpi
 sleep 1
 ```
 
-Save it und make it executable with:
+Save it and make it executable with:
 ```
 sudo chmod +x /usr/local/bin/ftsc1000-touch-init.sh
 ```
