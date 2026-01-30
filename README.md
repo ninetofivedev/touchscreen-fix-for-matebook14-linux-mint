@@ -22,7 +22,7 @@ Locate your grub file under:
 
 Search for following line:
 ```
-GRUB_CMDLINE_LINUX="..."
+GRUB_CMDLINE_LINUX_DEFAULT="..."
 ```
 
 Replace it with:
