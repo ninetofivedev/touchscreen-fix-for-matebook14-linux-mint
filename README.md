@@ -17,25 +17,54 @@ The MateBook 14 (2025) touchscreen is connected via an internal Goodix/FTSC1000 
 
 ## Settings
 
-Locate your grub file under:
-`/etc/default/grub`
+So we have to tell the kernel to wait a little before initializing the I²C touchscreen:
 
-Search for following line:
+Create a new script in your bin folder:
 ```
-GRUB_CMDLINE_LINUX_DEFAULT="..."
-```
-
-Replace it with:
-```
-GRUB_CMDLINE_LINUX_DEFAULT="quiet splash i2c_hid.quirks=0x2808:0x5662:0x4 i2c_hid_acpi_force=1 hid_multitouch.ignore_special_drivers=1 i2c_hid.initial_delay=1000"
+sudo nano /usr/local/bin ftsc1000-touch-init.sh
 ```
 
-Save the changes.
-Update your grub file with:
+Fill it with:
 ```
-sudo update-grub
+#!/bin/bash
+sudo modprobe -r i2c_hid_acpi
+sleep 1
+sudo modprobe i2c_hid_acpi
+sleep 1
+```
+
+Save it und make it executable with:
+```
+sudo chmod +x /usr/local/bin/ftsc1000-touch-init.sh
+```
+
+Now we want it to be executed on startup.
+Create a new systemd service in your systemd folder:
+```
+sudo nano /etc/systemd/system/ftsc1000-touch.service
+```
+
+Fill it with:
+```
+[Unit]
+Description=FTSC1000 Touchscreen Init
+After=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/ftsc1000-touch-init.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Activate it with following commands:
+```
+sudo systemctl daemon-reload
+sudo systemctl enable ftsc1000-touch.service
 ```
 
 Restart Linux.
 
-Try using your touchscreen. Does it work? Yes? Great! But this is just a temporary fix. 
+Your Touchscreen should now work. 
