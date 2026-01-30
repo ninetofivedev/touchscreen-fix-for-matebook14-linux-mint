@@ -17,7 +17,7 @@ The MateBook 14 (2025) touchscreen is connected via an internal Goodix/FTSC1000 
 
 ## Settings
 
-1. Locate your grub file under:
+Locate your grub file under:
 `/etc/default/grub`
 
 Search for following line:
