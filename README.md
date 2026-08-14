@@ -9,7 +9,7 @@
 ## Introduction
 
 These instructions are intended for anyone who wants to have a permanently functioning touchscreen under Linux on a Huawei Matebook 14 from 2025.
-I have tested it on my own device and can verify that it works with LinuxMint, Manjaro and ZorinOS on devices with the specific model number FLMH-X.
+I have tested it on my own device and can verify that it works with CachyOS, LinuxMint, Manjaro and ZorinOS on devices with the specific model number FLMH-X.
 
 ## Background
 
